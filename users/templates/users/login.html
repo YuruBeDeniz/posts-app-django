@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <h1>Login</h1>
+    <form action="{% url 'users:login' %}" method="post" class="form-with-validation">
+        {% csrf_token %}
+        {{ form }}
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
+        <button class="form-button">Submit</button>
+    </form>
+{% endblock %}
+
+{% comment %} 
+add a hidden input, to gather next page value, if it exists in the url 
+{% endcomment %}
